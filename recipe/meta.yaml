@@ -1,4 +1,4 @@
-{% set version = "1.2.0" %}
+{% set version = "4.9.9" %}
 
 package:
   name: tensorflow-datasets
@@ -6,19 +6,19 @@ package:
 
 source:
   url: https://pypi.io/packages/source/t/tensorflow-datasets/tensorflow-datasets-{{ version }}.tar.gz
-  sha256: a3f2c0f9b553cf01f03bc42a84649c93c2acf668e5e82c0e4ce163692cf274d4
+  sha256: 9cb245cad97e7d227f0b8e006491cfef860ff8d4b9d84a3c68f8b96d6295355e
 
 build:
   number: 0
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv "
-  skip: True  # [ppc64le]
-  skip: True  # [win and py==27]
-  skip: True  # [win32]
+  script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
+  skip: True  # [py<310]
 
 requirements:
   host:
     - python
     - pip
+    - setuptools
+    - wheel
   run:
     - python
     - absl-py
