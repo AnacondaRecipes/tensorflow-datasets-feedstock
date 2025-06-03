@@ -22,24 +22,28 @@ requirements:
   run:
     - python
     - absl-py
-    - attrs
-    - dill
-    - future
+    # Min version of 0.5.0 as old array_record wheel are bugged on all
+    # platform except 'x86_64'. See
+    # https://github.com/google/array_record/issues/71
+    - array_record >=0.5.0  # [linux]
+    - dm-tree
+    - etils[edc,enp,epath,epy,etree] >=1.6.0  # [python < "3.11"]
+    - etils[edc,enp,epath,epy,etree] >=1.9.1  # [python >= "3.11"]
+    - immutabledict
     - numpy
     - promise
-    - protobuf >=3.6.1
+    - protobuf >=3.20
     - psutil
+    - pyarrow
     - requests >=2.19.0
-    - six
-    - tensorflow >=1.14
+    - simple_parsing
     - tensorflow-metadata
     - termcolor
+    - toml
     - tqdm
     - wrapt
-    - bz2file       # [py27]
-    - functools32   # [py27]
-    - futures       # [py27]
-    - enum34        # [py<34]
+    # Standard library backports
+    - importlib_resources  # [py<39]
 
 test:
   imports:
