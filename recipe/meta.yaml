@@ -27,8 +27,8 @@ requirements:
     # https://github.com/google/array_record/issues/71
     - array_record >=0.5.0  # [linux]
     - dm-tree
-    - etils[edc,enp,epath,epy,etree] >=1.6.0  # [python < "3.11"]
-    - etils[edc,enp,epath,epy,etree] >=1.9.1  # [python >= "3.11"]
+    - etils[edc,enp,epath,epy,etree] >=1.6.0  # [py<311]
+    - etils[edc,enp,epath,epy,etree] >=1.9.1  # [py>=311]
     - immutabledict
     - numpy
     - promise
@@ -36,7 +36,7 @@ requirements:
     - psutil
     - pyarrow
     - requests >=2.19.0
-    - simple_parsing
+    - simple-parsing
     - tensorflow-metadata
     - termcolor
     - toml
