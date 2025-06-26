@@ -1,0 +1,6 @@
+channels:
+  - https://staging.continuum.io/prefect/fs/dunamai-feedstock/pr4/c764d70
+  - https://staging.continuum.io/prefect/fs/poetry-dynamic-versioning-feedstock/pr4/aae2b3c
+  - https://staging.continuum.io/prefect/fs/simple-parsing-feedstock/pr1/f0c69c8
+  - https://staging.continuum.io/prefect/fs/immutabledict-feedstock/pr3/b772a8f
+  - https://staging.continuum.io/prefect/fs/etils-feedstock/pr2/07ed475
