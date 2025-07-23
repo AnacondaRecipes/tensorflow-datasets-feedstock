@@ -22,7 +22,7 @@ requirements:
   run:
     - python
     - absl-py
-    - array-record >=0.5.0
+    - array_record >=0.5.0
     - dm-tree
     - etils[edc,enp,epath,epy,etree] >=1.6.0  # [py<311]
     - etils[edc,enp,epath,epy,etree] >=1.9.1  # [py>=311]
