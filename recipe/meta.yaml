@@ -12,7 +12,7 @@ build:
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
   # Skip osx-64 and windows since array_record is not available
-  skip: True  # [py<310 or osx64 or win]
+  skip: True  # [py<310 or win or (osx and x86_64)]
 
 requirements:
   host:
