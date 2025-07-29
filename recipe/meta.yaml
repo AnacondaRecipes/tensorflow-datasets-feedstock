@@ -7,12 +7,14 @@ package:
 source:
   url: https://github.com/tensorflow/datasets/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 0203e65ab136b5e3dcf6a02e0946452b24cae93cb0d7e8b442c3669f12606ffa
+  patches:
+    - patches/0001-Remove-array_record-dependency-from-setup.py.patch
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
   # Skip osx-64 and windows since array_record is not available
-  skip: True  # [py<310 or win or (osx and x86_64)]
+  skip: True  # [py<310]
 
 requirements:
   host:
