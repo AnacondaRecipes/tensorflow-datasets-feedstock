@@ -7,8 +7,8 @@ package:
 source:
   url: https://github.com/tensorflow/datasets/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 0203e65ab136b5e3dcf6a02e0946452b24cae93cb0d7e8b442c3669f12606ffa
-  patches:
-    - patches/0001-Remove-array_record-dependency-from-setup.py.patch
+  patches:  # [linux]
+    - patches/0001-Remove-array_record-dependency-from-setup.py.patch  # [linux]
 
 build:
   number: 0
@@ -17,6 +17,8 @@ build:
   skip: True  # [py<310]
 
 requirements:
+  build:
+    - patch  # [linux]
   host:
     - python
     - pip
