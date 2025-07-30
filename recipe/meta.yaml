@@ -40,7 +40,8 @@ requirements:
     - pyarrow
     - requests >=2.19.0
     - simple-parsing
-    - tensorflow-metadata
+    # prefect tries to use tensorflow-metadata 0.14.0
+    - tensorflow-metadata >=1.16.0
     - termcolor
     - toml
     - tqdm
