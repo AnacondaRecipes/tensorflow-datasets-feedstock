@@ -46,15 +46,37 @@ requirements:
     - tqdm
     - wrapt
     # Standard library backports
-    - importlib_resources  # [py<39]
+    - importlib_resources
 
 test:
+  source_files:
+    - tensorflow_datasets/
   imports:
     - tensorflow_datasets
   requires:
     - pip
+    - pytest >=6.0
+    - pytest-xdist
+    - numpy
+    - tensorflow >=2.16  # [py<313]
+    - absl-py
+    - requests
+    - tqdm
+    - six
+    - packaging
+    - importlib_resources
   commands:
     - pip check
+
+    # Python 3.9-3.12: Core tests WITH TensorFlow (avoiding optional dependencies)
+    - pytest tensorflow_datasets/core/utils/file_utils_test.py -v  # [py>=39 and py<313]
+    - pytest tensorflow_datasets/core/dataset_info_test.py -v  # [py>=39 and py<313]
+
+    # Python 3.13+: Core tests WITHOUT TensorFlow (limited by missing optional dependencies)
+    - python -c "from tensorflow_datasets.core.utils import file_utils; print('Core utils import successful')"  # [py>=313]
+    - python -c "from tensorflow_datasets.core import dataset_info; print('Dataset info import successful')"  # [py>=313]
+    # Run file_utils tests, skipping those that require TensorFlow's mock_fs fixture (not available on Python 3.13)
+    - pytest tensorflow_datasets/core/utils/file_utils_test.py -v -k "not (list_dataset_variants or list_datasets_in_data_dir or find_files_without_glob or publish_data)"  # [py>=313]
 
 about:
   home: https://www.tensorflow.org/datasets
