@@ -1,0 +1,35 @@
+From 44d3c7daa60de0e917f5c99b4d369926e116e904 Mon Sep 17 00:00:00 2001
+From: Steven <scrass@anaconda.com>
+Date: Tue, 29 Jul 2025 16:19:12 -0600
+Subject: [PATCH] Remove array_record dependency from setup.py
+
+Remove array_record>=0.5.0 dependency that was conditionally required
+for Linux systems. This dependency is not available in the Anaconda
+package repositories and causes build failures on certain platforms.
+
+The dependency was originally added to address wheel compatibility
+issues on non-x86_64 platforms, but removing it allows the package
+to build successfully in conda environments while maintaining
+compatibility with existing functionality.
+---
+ setup.py | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/setup.py b/setup.py
+index 018426fb..65558471 100644
+--- a/setup.py
++++ b/setup.py
+@@ -49,10 +49,6 @@ DOCLINES = __doc__.split('\n')
+ 
+ REQUIRED_PKGS = [
+     'absl-py',
+-    # Min version of 0.5.0 as old array_record wheel are bugged on all
+-    # platform except 'x86_64'. See
+-    # https://github.com/google/array_record/issues/71
+-    'array_record>=0.5.0;platform_system=="Linux"',
+     'dm-tree',
+     'etils[edc,enp,epath,epy,etree]>=1.6.0;python_version<"3.11"',
+     'etils[edc,enp,epath,epy,etree]>=1.9.1;python_version>="3.11"',
+-- 
+2.39.5 (Apple Git-154)
+
