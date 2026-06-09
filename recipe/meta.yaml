@@ -1,4 +1,4 @@
-{% set version = "4.9.9" %}
+{% set version = "4.9.10" %}
 
 package:
   name: tensorflow-datasets
@@ -6,18 +6,17 @@ package:
 
 source:
   url: https://github.com/tensorflow/datasets/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 0203e65ab136b5e3dcf6a02e0946452b24cae93cb0d7e8b442c3669f12606ffa
+  sha256: a99598f15bf4853bc793e4cfafbdd524a69ff238b4f4000a4c5a0364410e5e7c
   patches:  # [linux]
     - patches/0001-Remove-array_record-dependency-from-setup.py.patch  # [linux]
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
-  skip: True  # [py<310]
+  skip: true  # [py<310]
 
 requirements:
   build:
-    - patch  # [linux]
   host:
     - python
     - pip
@@ -68,17 +67,14 @@ test:
     - importlib_resources
   commands:
     - pip check
-
     # Upstream functional tests - verify core tensorflow-datasets functionality
     # These replace pytest to avoid TensorFlow import conflicts during test collection
-
     # Core module availability tests
     - python -c "import tensorflow_datasets as tfds; print('tensorflow-datasets version:', tfds.__version__)"
     - python -c "from tensorflow_datasets.core.utils import file_utils; print('Core utils import successful')"
     - python -c "from tensorflow_datasets.core import dataset_info; print('Dataset info import successful')"
     - python -c "from tensorflow_datasets.core import download; print('Download module import successful')"
     - python -c "from tensorflow_datasets.core import features; print('Features module import successful')"
-
     # Functional verification tests - verify actual functionality works
     - python -c "from tensorflow_datasets.core.utils import file_utils; import tempfile; temp_dir = tempfile.mkdtemp(); print('File utils functional test passed:', temp_dir)"
     - python -c "from tensorflow_datasets.core import dataset_info; print('Dataset info module functional test passed:', hasattr(dataset_info, 'DatasetInfo'))"
