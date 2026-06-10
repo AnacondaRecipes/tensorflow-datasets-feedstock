@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/{{ name.split('-')[0] }}/{{ name.split('-')[1] }}/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 0203e65ab136b5e3dcf6a02e0946452b24cae93cb0d7e8b442c3669f12606ffa
+  sha256: a99598f15bf4853bc793e4cfafbdd524a69ff238b4f4000a4c5a0364410e5e7c
   patches:  # [linux]
     - patches/0001-Remove-array_record-dependency-from-setup.py.patch  # [linux]
 
