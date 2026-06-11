@@ -45,8 +45,6 @@ requirements:
     - toml
     - tqdm
     - wrapt
-    # Standard library backports
-    - importlib_resources  # [py<39]
   run_constrained:
     # beir
     - apache-beam <2.65.0
