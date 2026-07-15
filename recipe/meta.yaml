@@ -40,7 +40,7 @@ requirements:
     - pyarrow
     - requests >=2.19.0
     - simple-parsing
-    - tensorflow-metadata 1.16.1
+    - tensorflow-metadata
     - termcolor
     - toml
     - tqdm
