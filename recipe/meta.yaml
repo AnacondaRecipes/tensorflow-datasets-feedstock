@@ -12,7 +12,7 @@ source:
     - patches/0001-Remove-array_record-dependency-from-setup.py.patch  # [linux]
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . --no-deps -vv --no-build-isolation
   skip: true  # [py<310]
 
@@ -40,7 +40,7 @@ requirements:
     - pyarrow
     - requests >=2.19.0
     - simple-parsing
-    - tensorflow-metadata 1.16.1
+    - tensorflow-metadata
     - termcolor
     - toml
     - tqdm
@@ -73,7 +73,8 @@ test:
     - packaging
     - importlib_resources
   commands:
-    - pip check
+    # tensorflow-metadata 1.21.0 has requirement protobuf<=6.32,>=4.21.6; python_version < "3.11", but you have protobuf 6.33.5.
+    - pip check  # [py>=311]
 
     # Upstream functional tests - verify core tensorflow-datasets functionality
     # These replace pytest to avoid TensorFlow import conflicts during test collection
